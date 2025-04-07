@@ -13,12 +13,12 @@ def visualize_gu(df):
     folium.Choropleth(
         geo_data=seoul_geo,
         data=df,
-        columns=['구', '사고건수'],
+        columns=['구','적발건수' if '적발건수' in df.columns else '사고건수'],
         key_on='feature.properties.sggnm',  # GeoJSON에서 구 이름 필드
         fill_color='OrRd',
         fill_opacity=0.7,
         line_opacity=0.5,
-        legend_name=f'{df['발생년월'].iloc[0]} 서울 사고 건수'
+        legend_name=f'{df['발생년월'].iloc[0] if '발생년월' in df.columns else None} 서울 사고 건수'
     ).add_to(m)
         # 시군구 이름 표시 (툴팁)
     folium.GeoJson(
@@ -47,12 +47,12 @@ def visualize_dong(df):
     folium.Choropleth(
         geo_data=seoul_geo,
         data=df,
-        columns=['시군구', '사고건수'],
+        columns=['시군구','적발건수' if '적발건수' in df.columns else '사고건수'],
         key_on='feature.properties.adm_nm',  # GeoJSON에서 구 이름 필드
         fill_color='OrRd',
         fill_opacity=0.7,
         line_opacity=0.5,
-        legend_name=f'{df['발생년월'].iloc[0]} 서울 사고 건수'
+        legend_name=f'{df['발생년월'].iloc[0] if '발생년월' in df.columns else None} 서울 사고 건수'
     ).add_to(m)
         # 시군구 이름 표시 (툴팁)
     folium.GeoJson(
