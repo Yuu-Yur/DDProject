@@ -1,7 +1,7 @@
 import folium
 import json
 
-def visualize_gu(df):
+def visualize_gu(df, column_name):
     # 서울 중심 좌표
     m = folium.Map(location=[37.5665, 126.9780], zoom_start=12, tiles=None)
 
@@ -13,7 +13,7 @@ def visualize_gu(df):
     folium.Choropleth(
         geo_data=seoul_geo,
         data=df,
-        columns=['구','적발건수' if '적발건수' in df.columns else '사고건수'],
+        columns=['구', column_name],
         key_on='feature.properties.sggnm',  # GeoJSON에서 구 이름 필드
         fill_color='OrRd',
         fill_opacity=0.7,
@@ -35,7 +35,7 @@ def visualize_gu(df):
     return m
 
 
-def visualize_dong(df):
+def visualize_dong(df, column_name):
     # 서울 중심 좌표
     m = folium.Map(location=[37.5665, 126.9780], zoom_start=12, tiles=None)
 
@@ -47,7 +47,7 @@ def visualize_dong(df):
     folium.Choropleth(
         geo_data=seoul_geo,
         data=df,
-        columns=['시군구','적발건수' if '적발건수' in df.columns else '사고건수'],
+        columns=['시군구', column_name],
         key_on='feature.properties.adm_nm',  # GeoJSON에서 구 이름 필드
         fill_color='OrRd',
         fill_opacity=0.7,
