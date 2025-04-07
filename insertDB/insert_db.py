@@ -26,7 +26,7 @@ def insert_db(table_name,c_query,i_query,data_path):
         # 1. 데이터 로드
         df = pd.read_csv(data_path, encoding='utf-8', header=0)
         # 2. 데이터 변환
-
+        df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
         # 3. 날짜 변환 (문자열 → DATETIME)
 
         # 테이블 인서트
