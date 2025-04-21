@@ -3,3 +3,4 @@ result/
 .venv/
 .idea/
 ./cctv_data_pre.ipynb
+moving/
